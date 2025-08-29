@@ -5,8 +5,8 @@ const Testimonials = () => {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
 
   const content = {
-      title: "Ce que Disent Nos Clients",
-      subtitle: "Approuvé par des professionnels et organisations du monde entier",
+      title: "Avis de nos clients",
+      subtitle: "Approuvé par des experts et partenaires du monde entier",
       testimonials: [
         {
           name: "Sarah Johnson",
@@ -141,7 +141,7 @@ const Testimonials = () => {
           <h3 className="text-2xl font-semibold text-gray-900 mb-8">
             Approuvé par des Entreprises Leaders
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+          {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
             {clientLogos.map((logo, index) => (
               <div key={index} className="flex justify-center">
                 <img
@@ -151,7 +151,7 @@ const Testimonials = () => {
                 />
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
 
         {/* Stats */}

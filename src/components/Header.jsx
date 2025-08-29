@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
-
+import logoLight from '../assets/logo-light.png'
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,7 +15,7 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navigation = ["Home", "About Us", "Services", "Contact"];
+  const navigation = ["Acceuil", "A propos de nous", "Notre service", "Contact"];
 
   const scrollToSection = (sectionId) => {
     const element = document.getElementById(sectionId);
@@ -27,16 +27,16 @@ const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 h-[80px] ${
         isScrolled ? "bg-white shadow-lg text-blue-600" : "bg-transparent text-white"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex justify-between items-center h-full ">
           {/* Logo */}
           <div className="flex items-center">
             <div className="ml-3">
-              <img src={logo} alt="" width={80} />
+              <img src={isScrolled ? logo : logoLight} alt="" width={120} />
             </div>
           </div>
 

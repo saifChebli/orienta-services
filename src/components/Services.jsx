@@ -9,43 +9,38 @@ import {
 const Services = () => {
   const content = {
       title: "Nos Services",
-      subtitle: "Solutions Complètes pour Votre Succès Mondial",
+      subtitle: "Un accompagnement complet pour booster votre carrière à l’international",
       services: [
         {
           icon: GlobeAltIcon,
-          title: "Assistance Voyage",
-          description: "Support de voyage complet incluant les demandes de visa, réservation d'hébergement et orientation culturelle pour les missions internationales.",
+          title: "Service d'Experts",
+          description: "Analyse complète et encadrement professionnel pour identifier les marchés et les offres adaptés à votre profil.",
           features: [
-            "Support Visa & Immigration",
-            "Planification & Réservation",
-            "Orientation Culturelle",
-            "Support 24/7"
+            "Analyse complète et approfondie de votre parcours pour identifier les marchés et les offres qui correspondent réellement à votre profil.",
+            "Orientation et encadrement professionnels pour vous guider vers les choix les plus adaptés à vos objectifs et à votre potentiel."
           ]
         },
         {
           icon: UserGroupIcon,
-          title: "Services de Recrutement",
-          description: "Services d'acquisition et de placement de talents, connectant les professionnels qualifiés aux opportunités mondiales.",
+          title: "Service Dossier",
+          description: "Création de dossiers professionnels aux normes internationales pour maximiser vos chances.",
           features: [
-            "Acquisition de Talents",
-            "Sélection de Candidats",
-            "Coordination d'Entretiens",
-            "Support de Placement"
+            "Création d’un dossier professionnel aux normes internationales : CV, lettre de motivation.",
+            "Présentation professionnelle qui met en valeur vos points forts pour vous démarquer sur le marché international."
           ]
         },
         {
           icon: BriefcaseIcon,
-          title: "Conseil Professionnel",
-          description: "Services de conseil stratégique et de développement professionnel pour améliorer votre présence sur le marché mondial.",
+          title: "Service Recherche et Postulation",
+          description: "Accompagnement complet pour postuler efficacement et réussir vos entretiens.",
           features: [
-            "Stratégie d'Entreprise",
-            "Support d'Entrée Marché",
-            "Formation Professionnelle",
-            "Guidance Conformité"
+            "Candidature ciblée et prise de contact directe avec les entreprises.",
+            "Transmission de votre dossier de manière professionnelle aux employeurs et partenaires internationaux.",
+            "Préparation aux entretiens.",
+            "Accompagnement et suivi continus pas à pas pour que vous soyez prêt(e), confiant(e) et performant(e) lors de vos entretiens."
           ]
         }
       ]
-    
   };
 
   return (
@@ -93,23 +88,22 @@ const Services = () => {
               </ul>
 
               {/* Learn More Button */}
-              <button className="mt-6 text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-200 group-hover:underline">
+              {/* <button className="mt-6 text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-200 group-hover:underline">
                 En Savoir Plus →
-              </button>
+              </button> */}
             </div>
           ))}
         </div>
 
-        {/* Call to Action */}
+              {/* Call to Action */}
         <div className="mt-16 text-center">
-          <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl p-8 md:p-12">
+          <div className="bg-blue-600 rounded-2xl p-8 md:p-12">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-              Prêt à Commencer ?
+              <span className="px-3 py-1">Démarrez votre carrière</span>
             </h3>
-            <p className="text-blue-100 mb-6 max-w-2xl mx-auto">
-     
-               'Laissez-nous vous aider à naviguer dans vos opportunités mondiales avec nos services professionnels complets.'
-              
+            <p className="text-white mb-6 max-w-2xl mx-auto">
+              N'hésitez pas à laissez-nous vos coordonnées pour vous aider à décrocher 
+              dans vos opportunités mondiales avec nos services professionnels complets.
             </p>
             <button 
               onClick={() => {
@@ -118,15 +112,16 @@ const Services = () => {
                   element.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="bg-white text-blue-600 font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+              className="bg-white text-black font-semibold py-3 px-8 rounded-lg hover:bg-gray-100 transition-colors duration-200"
             >
-              Commencer Aujourd\'hui
+              Contacter Nous
             </button>
           </div>
         </div>
+
       </div>
     </section>
   );
 };
 
-export default Services; 
+export default Services;

@@ -22,7 +22,7 @@ const Contact = () => {
         email: "Adresse Email",
         phone: "Numéro de Téléphone",
         message: "Votre Message",
-        submit: "Envoyer le Message"
+        submit: "Réservez"
       },
       contact: {
         title: "Contactez-nous",
@@ -66,7 +66,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-gray-50 rounded-2xl p-8">
             <h3 className="text-2xl font-semibold text-gray-900 mb-6">
-              Envoyez-nous un Message
+              Réservez Votre Consultation
             </h3>
             
             <form onSubmit={handleSubmit} className="space-y-6">

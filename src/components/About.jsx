@@ -4,20 +4,20 @@ const About = () => {
   const content = {
       title: "À Propos",
       subtitle: "Votre Partenaire de Confiance pour le Succès Mondial",
-      description: "Orienta Pro Service Company est un fournisseur leader de services professionnels complets, spécialisé dans l'assistance voyage, les solutions de recrutement et le conseil en entreprise. Avec des années d'expérience et un réseau mondial, nous aidons les particuliers et les organisations à naviguer dans les opportunités internationales avec confiance et expertise.",
+      description: "Oriventa Pro Service Company meilleure agence professionnelle spécialisée dans la recherche d’emploi à l’étranger. Notre mission est de vous accompagner et encadrer avec orientation professionnelle à chaque étape : étude personnalisée de chaque  profil , création d’un dossier complet  conforme aux normes  internationales, Recherche active d'opportunités et candidatures ciblées, Mise en relation directe avec les entreprises , les employeurs , cabinet de recrutement et partenaires internationaux. Préparation aux entretiens et coaching personnalisé avec un suivi stratégique jusqu’à votre intégration.",
       mission: "Notre mission est de combler les écarts culturels et professionnels, en fournissant des solutions transparentes qui permettent à nos clients de prospérer sur le marché mondial.",
       values: [
         {
-          title: "Excellence",
-          description: "Nous maintenons les plus hauts standards dans tous nos services"
+          title: "Fiabilité et professionnalisme",
+          description: "Transparence et sérieux à chaque étape, avec accompagnement personnalisé et orientation stratégique"
         },
         {
-          title: "Confiance",
-          description: "Construire des relations durables grâce à la transparence et la fiabilité"
+          title: "Expertise internationale",
+          description: "Connaissance approfondie des marchés de l'emploi à l'étranger"
         },
         {
-          title: "Innovation",
-          description: "Évoluer continuellement pour répondre aux demandes mondiales changeantes"
+          title: "Réseau solide",
+          description: "Relations directes avec employeurs , cabinets de recrutement et partenaires fiables "
         }
       ]
   };

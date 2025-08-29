@@ -3,7 +3,7 @@ import React from 'react';
 const Hero = () => {
   const content = {
       slogan: "Votre Passerelle vers les Opportunités Mondiales",
-      subtitle: "Services professionnels de voyage, recrutement et conseil pour vous aider à réussir à l'international",
+      subtitle: "Agence experte en recherche d'emploi à l'étranger, offrant un suivi personnalisé, accompagnement et conseils avec des stratégies efficaces pour développer votre carrière au-delà des frontières.",
       cta: "Contactez-nous",
       scrollText: "Faites défiler pour explorer"
   };
