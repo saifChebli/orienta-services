@@ -4,32 +4,43 @@ import logo from "../assets/logo-light.png";
 
 export default function Dossier() {
   const [form, setForm] = useState({
+    dossierNumber: "",
     fullName: "",
-    phone: "",
     email: "",
-    studyLevel: "",
-    jobDomain: "",
-    destination: "",
-    language: "",
-    cv: null,
-    message: "",
-    consent: false,
+    phone: "",
+    address: "",
+    birthDate: "",
+    jobType: "",
+    hasCV: "",
+    cvFile: null,
+    experiences: "",
+    exp1: "",
+    exp2: "",
+    exp3: "",
+    attestationsTravail: null,
+    languages: "",
+    diplomas: "",
+    diplomasFiles: null,
+    stages: "",
+    attestationsStage: null,
+    associations: "",
+    skills: "",
+    remarks: "",
+    paymentReceipt: null,
   });
 
   const handleChange = (e) => {
-    const { name, value, type, checked, files } = e.target;
+    const { name, value, type, files } = e.target;
     setForm((f) => ({
       ...f,
-      [name]: type === "checkbox" ? checked : type === "file" ? files[0] : value,
+      [name]: type === "file" ? files[0] : value,
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Lead submitted", form);
-    alert(
-      "Merci ! Nous vous contacterons en moins de 24h.\nشكراً! سنتواصل معك في أقل من 24 ساعة."
-    );
+    console.log("Form submitted", form);
+    alert("Merci ! Votre dossier a été envoyé avec succès.");
   };
 
   return (
@@ -39,162 +50,296 @@ export default function Dossier() {
         <HeaderHero />
 
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-          <div>
-            <section className="bg-white rounded-2xl shadow-xl/40 max-w-4xl mx-auto shadow-slate-200 p-6 sm:p-8 border border-slate-100">
-              <form onSubmit={handleSubmit} className="mt-6 gap-4">
-                
-                <Field labelFR="Numéro de dossier" labelAR="الاسم الكامل" required>
-                  <input
-                    type="text"
-                    name="fullName"
-                    value={form.fullName}
-                    onChange={handleChange}
-                    required
-                    placeholder="Ex: Ahmed Ben Ali"
-                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  />
-                </Field>
+          <section className="bg-white rounded-2xl shadow-xl/40 max-w-4xl mx-auto shadow-slate-200 p-6 sm:p-8 border border-slate-100">
+            <form onSubmit={handleSubmit} className="mt-6 gap-4">
 
-                <Field labelFR="Nom & Prénom" labelAR="الهاتف" required>
-                  <input
-                    type="text"
-                    name="phone"
-                    value={form.fullName}
-                    onChange={handleChange}
-                    required
-                    placeholder="Ex: +216 20 000 000"
-                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  />
-                </Field>
-              
-
-                <Field labelFR="Adresse e-mail" labelAR="البريد الإلكتروني" required>
-                  <input
-                    type="email"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="Ex: exemple@email.com"
-                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  />
-                </Field>
-
-                  <Field labelFR="Numéro de téléphone" labelAR="الهاتف" required>
-                  <input
-                    type="tel"
-                    name="phone"
-                    value={form.phone}
-                    onChange={handleChange}
-                    required
-                    placeholder="Ex: +216 20 000 000"
-                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  />
-                </Field>
-
-                <Field labelFR="Adresse exacte
-"  required>
-                  <input
-                    type="text"
-                    name="studyLevel"
-                    value={form.studyLevel}
-                    onChange={handleChange}
-                    required
-                    placeholder="Adresse exacte..."
-                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  />
-                </Field>
-
-                <Field labelFR="date de naissance" labelAR="المجال المهني" required>
-                  <input
-                    type="date"
-                    name="jobDomain"
-                    value={form.jobDomain}
-                    onChange={handleChange}
-                    required
-                    placeholder="Ex: Informatique, Santé, BTP…"
-                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  />
-                </Field>
-
-                <Field labelFR="Quel type de travail recherchez-vous?" labelAR="البلد المرغوب" required>
-                  <input
-                    type="text"
-                    name="destination"
-                    value={form.destination}
-                    onChange={handleChange}
-                    required
-                    placeholder="Quel type de travail recherchez-vous?…"
-                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  />
-                </Field>
-
-                <Field labelFR="avez-vous un CV? "  required>
-                  <input
-                    type="text"
-                    name="destination"
-                    value={form.destination}
-                    onChange={handleChange} 
-                    required
-                    placeholder="Oui ou Non…"
-                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  />
-                </Field>
-
-                <Field labelFR="Votre CV" labelAR="السيرة الذاتية" required>
-                  <input
-                    type="file"
-                    name="cv"
-                    onChange={handleChange}
-                    required
-                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  />
-                </Field>
-
-                <Field
-                  className="sm:col-span-2"
-                  labelFR="Message"
-                  labelAR="الرسالة"
+              {/* Numéro de dossier */}
+              <Field labelFR="Numéro de dossier" required>
+                <input
+                  type="text"
+                  name="dossierNumber"
+                  value={form.dossierNumber}
+                  onChange={handleChange}
                   required
+                  placeholder="Numéro de dossier"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Nom & prénom */}
+              <Field labelFR="Nom & Prénom" required>
+                <input
+                  type="text"
+                  name="fullName"
+                  value={form.fullName}
+                  onChange={handleChange}
+                  required
+                  placeholder="Foulen Ben Foulen"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Email */}
+              <Field labelFR="Email" required>
+                <input
+                  type="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                  placeholder="foulen@gmail.com"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Téléphone */}
+              <Field labelFR="Numéro de téléphone" required>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                  placeholder="Numéro de téléphone"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Adresse exacte */}
+              <Field labelFR="Adresse exacte" required>
+                <input
+                  type="text"
+                  name="address"
+                  value={form.address}
+                  onChange={handleChange}
+                  required
+                  placeholder="Adresse exacte : ville, province, code postal"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Date de naissance */}
+              <Field labelFR="Date de naissance" required>
+                <input
+                  type="date"
+                  name="birthDate"
+                  value={form.birthDate}
+                  onChange={handleChange}
+                  required
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Travail recherché */}
+              <Field labelFR="Quel type de travail recherchez-vous?" required>
+                <input
+                  type="text"
+                  name="jobType"
+                  value={form.jobType}
+                  onChange={handleChange}
+                  required
+                  placeholder="Ex: Informatique, Santé..."
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Avez-vous un CV */}
+              <Field labelFR="Avez-vous un CV ?" required>
+                <input
+                  type="text"
+                  name="hasCV"
+                  value={form.hasCV}
+                  onChange={handleChange}
+                  required
+                  placeholder="Oui - Non"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Upload CV */}
+              <Field labelFR="CV (PDF)">
+                <input
+                  type="file"
+                  name="cvFile"
+                  onChange={handleChange}
+                  className="w-full"
+                />
+              </Field>
+
+              {/* Expériences */}
+              <Field labelFR="Liste des expériences professionnelles" required>
+                <input
+                  type="text"
+                  name="experiences"
+                  value={form.experiences}
+                  onChange={handleChange}
+                  required
+                  placeholder="Période / société / postes occupés"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              <Field labelFR="Expérience N°1" required>
+                <input
+                  type="text"
+                  name="exp1"
+                  value={form.exp1}
+                  onChange={handleChange}
+                  required
+                  placeholder="Expérience N°1"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              <Field labelFR="Expérience N°2" required>
+                <input
+                  type="text"
+                  name="exp2"
+                  value={form.exp2}
+                  onChange={handleChange}
+                  required
+                  placeholder="Expérience N°2"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              <Field labelFR="Expérience N°3" required>
+                <input
+                  type="text"
+                  name="exp3"
+                  value={form.exp3}
+                  onChange={handleChange}
+                  required
+                  placeholder="Expérience N°3"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              <Field labelFR="Attachez des photos de vos attestations de travail" required>
+                <input
+                  type="file"
+                  name="attestationsTravail"
+                  onChange={handleChange}
+                  className="w-full"
+                />
+              </Field>
+
+              {/* Langues */}
+              <Field labelFR="Niveau en anglais et français" required>
+                <input
+                  type="text"
+                  name="languages"
+                  value={form.languages}
+                  onChange={handleChange}
+                  required
+                  placeholder="Niveau en anglais et français"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Diplômes */}
+              <Field labelFR="Liste des diplômes avec établissements et périodes" required>
+                <input
+                  type="text"
+                  name="diplomas"
+                  value={form.diplomas}
+                  onChange={handleChange}
+                  required
+                  placeholder="Diplômes avec établissements et périodes"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              <Field labelFR="Attachez des photos de vos diplômes, certificats..." required>
+                <input
+                  type="file"
+                  name="diplomasFiles"
+                  onChange={handleChange}
+                  className="w-full"
+                />
+              </Field>
+
+              {/* Stages */}
+              <Field labelFR="Liste des stages" required>
+                <input
+                  type="text"
+                  name="stages"
+                  value={form.stages}
+                  onChange={handleChange}
+                  required
+                  placeholder="Liste des stages"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              <Field labelFR="Attachez des photos de vos attestations de stage" required>
+                <input
+                  type="file"
+                  name="attestationsStage"
+                  onChange={handleChange}
+                  className="w-full"
+                />
+              </Field>
+
+              {/* Associations */}
+              <Field labelFR="Liste des expériences associatives" required>
+                <input
+                  type="text"
+                  name="associations"
+                  value={form.associations}
+                  onChange={handleChange}
+                  required
+                  placeholder="Liste des expériences associatives"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Compétences */}
+              <Field labelFR="Vos compétences" required>
+                <input
+                  type="text"
+                  name="skills"
+                  value={form.skills}
+                  onChange={handleChange}
+                  required
+                  placeholder="Vos compétences"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Remarques */}
+              <Field labelFR="Autre remarques ou questions">
+                <input
+                  type="text"
+                  name="remarks"
+                  value={form.remarks}
+                  onChange={handleChange}
+                  placeholder="Vos remarques"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Reçu de paiement */}
+              <Field labelFR="Télécharger votre reçu de paiement" required>
+                <input
+                  type="file"
+                  name="paymentReceipt"
+                  onChange={handleChange}
+                  className="w-full"
+                />
+              </Field>
+
+              {/* Submit */}
+              <div className="sm:col-span-2 my-4 pt-2">
+                <button
+                  type="submit"
+                  className="w-full rounded-2xl bg-[#1D4ED8] px-5 py-3 text-white font-semibold shadow-lg"
                 >
-                  <textarea
-                    name="message"
-                    value={form.message}
-                    onChange={handleChange}
-                    rows={3}
-                    required
-                    placeholder="Expliquez votre demande…"
-                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2 resize-none"
-                  />
-                </Field>
-
-                <div className="sm:col-span-2 my-4 flex items-center gap-3">
-                  <input
-                    id="consent"
-                    name="consent"
-                    type="checkbox"
-                    checked={form.consent}
-                    onChange={handleChange}
-                    className="h-5 w-5 rounded-md border-[#1D4ED8]"
-                    required
-                  />
-                  <label htmlFor="consent" className="text-sm text-slate-700">
-                    J'accepte d'envoyer mes informations{" "}
-                    <span className="text-rose-600">*</span>
-                  </label>
-                </div>
-
-                <div className="sm:col-span-2 my-4 pt-2">
-                  <button
-                    type="submit"
-                    className="w-full rounded-2xl bg-[#1D4ED8] px-5 py-3 text-white font-semibold shadow-lg"
-                  >
-                    Envoyer ma demande
-                  </button>
-                </div>
-              </form>
-            </section>
-          </div>
+                  Envoyer
+                </button>
+              </div>
+            </form>
+          </section>
         </main>
       </div>
     </div>
@@ -223,23 +368,22 @@ function HeaderHero() {
     <header className="px-4 sm:px-6 lg:px-8 pt-10 sm:pt-14">
       <div className="flex flex-col justify-center items-center max-w-4xl mx-auto rounded-3xl p-6 sm:p-10">
         <h1 className="text-3xl text-center sm:text-4xl lg:text-5xl text-[#1D4ED8] font-extrabold">
-         Inscription
+          Inscription
         </h1>
         <p className="mt-3 text-slate-600 max-w-prose text-center">
-          Remplissez le formulaire et notre équipe vous contactera rapidement
-          pour évaluer votre profil et trouver la meilleure opportunité.
+          Veuillez lire attentivement tous les champs ci-dessous et préparer vos
+          pièces jointes à l'avance pour un traitement optimal.
         </p>
       </div>
     </header>
   );
 }
 
-function Field({ labelFR, labelAR, required, className, children }) {
+function Field({ labelFR, required, className, children }) {
   return (
     <label className={`block my-6 ${className || ""}`}>
       <span className="block text-lg font-medium text-slate-700">
-        {labelFR}{" "}
-        {required && <span className="text-rose-600">*</span>}
+        {labelFR} {required && <span className="text-rose-600">*</span>}
       </span>
       <div className="mt-1">{children}</div>
     </label>
