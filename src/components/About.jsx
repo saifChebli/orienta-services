@@ -25,7 +25,7 @@ const About = () => {
   };
 
   return (
-    <section id="a-propos de nous" className="py-4 bg-gray-50">
+    <section id="a-propos-de-nous" className="py-4 bg-gray-50">
       <div className='-mt-24 max-w-7xl mx-auto flex justify-center items-center'>
 
         <img src={visaOriveta} className="object-cover" width={420} alt="" />
