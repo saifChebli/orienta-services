@@ -9,24 +9,33 @@ const Testimonials = () => {
       subtitle: "Approuvé par des experts et partenaires du monde entier",
       testimonials: [
         {
-          name: "Sarah Johnson",
-          position: "Directrice RH",
+          name: "Riahi Najiba",
           company: "Global Tech Solutions",
-          text: "Orienta Pro Service nous a aidés à rationaliser notre processus de recrutement international. Leur expertise en demandes de visa et intégration culturelle était inestimable.",
+          text: "Que Dieu te bénisse ma sœur, un excellent travail, en plus avec une éducation et une haute moralité. Mille mercis, vraiment. Une confiance sincère.",
           rating: 5
         },
         {
-          name: "Michael Chen",
-          position: "Directeur Développement Commercial",
+          name: "Dhekra Rhouma ",
           company: "International Consulting Group",
-          text: "Les services de conseil professionnel fournis par Orienta Pro Service ont considérablement amélioré notre stratégie d'entrée sur de nouveaux marchés.",
+          text: "Mille mercis à vous, avec beaucoup de patience et de confiance, que tout se passe bien pour vous et que vos affaires soient toujours réglées.",
           rating: 5
         },
         {
-          name: "Emma Rodriguez",
-          position: "Coordinatrice Voyage",
+          name: "Hedi Bekri",
           company: "Corporation Multinationale",
-          text: "Leurs services d'assistance voyage sont exceptionnels. Ils ont géré tous nos arrangements de voyage internationaux avec précision et soin.",
+          text: "Un service au top, avec beaucoup de patience et surtout des conseils utiles.",
+          rating: 5
+        },
+        {
+          name: "Bà Bïnà",
+          company: "Corporation Multinationale",
+          text: "Bravo pour ton travail, que Dieu te bénisse et merci beaucoup. Je recommande vraiment à toute personne de travailler avec toi, sincèrement bravo.",
+          rating: 5
+        },
+        {
+          name: "Sonia Saidani",
+          company: "Corporation Multinationale",
+          text: "C’est la première fois que je traite avec des gens qui te respectent, qui se réjouissent pour toi, qui te comprennent et qui te considèrent avec délicatesse. Que Dieu vous bénisse.",
           rating: 5
         }
       ]
@@ -97,12 +106,6 @@ const Testimonials = () => {
               <div className="mb-6">
                 <div className="text-lg font-semibold text-gray-900">
                   {content.testimonials[currentTestimonial].name}
-                </div>
-                <div className="text-gray-600">
-                  {content.testimonials[currentTestimonial].position}
-                </div>
-                <div className="text-blue-600 font-medium">
-                  {content.testimonials[currentTestimonial].company}
                 </div>
               </div>
             </div>

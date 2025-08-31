@@ -1,23 +1,20 @@
-import React from 'react'
-import Header from './components/Header'
-import Hero from './components/Hero'
-import About from './components/About'
-import Services from './components/Services'
-import Testimonials from './components/Testimonials'
-import Contact from './components/Contact'
-import Footer from './components/Footer'
+
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Creation from './pages/Creation'
+import Consultation from './pages/Consultation'
+import Dossier from './pages/Dossier'
 
 const App = () => {
   return (
-    <div>
-      <Header />
-      <Hero />
-      <About />
-      <Services />
-      <Testimonials />
-      <Contact />
-      <Footer />
-    </div>
+    <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/creation" element={<Creation />} />
+          <Route path="/consultation" element={<Consultation />} />
+          <Route path="/dossier" element={<Dossier />} />
+        </Routes>
+    </Router>
   )
 }
 

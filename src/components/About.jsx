@@ -1,11 +1,12 @@
 import React from 'react';
+import aboutImage from '../assets/about-image.jpg';
 
 const About = () => {
   const content = {
-      title: "À Propos",
+      title: "À Propos de nous",
       subtitle: "Votre Partenaire de Confiance pour le Succès Mondial",
       description: "Oriventa Pro Service Company meilleure agence professionnelle spécialisée dans la recherche d’emploi à l’étranger. Notre mission est de vous accompagner et encadrer avec orientation professionnelle à chaque étape : étude personnalisée de chaque  profil , création d’un dossier complet  conforme aux normes  internationales, Recherche active d'opportunités et candidatures ciblées, Mise en relation directe avec les entreprises , les employeurs , cabinet de recrutement et partenaires internationaux. Préparation aux entretiens et coaching personnalisé avec un suivi stratégique jusqu’à votre intégration.",
-      mission: "Notre mission est de combler les écarts culturels et professionnels, en fournissant des solutions transparentes qui permettent à nos clients de prospérer sur le marché mondial.",
+      mission: "Notre objectif est de vous accompagner dans vos démarches vers votre carrière idéale.",
       values: [
         {
           title: "Fiabilité et professionnalisme",
@@ -23,7 +24,7 @@ const About = () => {
   };
 
   return (
-    <section id="about-us" className="py-20 bg-gray-50">
+    <section id="a-propos de nous" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
@@ -69,9 +70,9 @@ const About = () => {
           <div className="relative">
             <div className="relative z-10">
               <img
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+                src={aboutImage}
                 alt="Professional team meeting"
-                className="w-full h-96 object-cover rounded-lg shadow-xl"
+                className="w-full h-full object-cover rounded-lg shadow-xl"
               />
             </div>
             

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import logo from "../assets/logo.png";
 import logoLight from '../assets/logo-light.png'
+import { Link } from "react-router-dom";
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -15,9 +16,12 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navigation = ["Acceuil", "A propos de nous", "Notre service", "Contact"];
+  const navigation = ["A propos de nous", "Notre service", "Contact"];
+  const navLinks = [{text : 'Consultation Gratuite' , link : "/consultation"} , {text : 'Votre Dossier' , link : "/dossier"} , {text : 'Création CV' , link : "/cv"} ];
 
   const scrollToSection = (sectionId) => {
+    console.log(sectionId);
+    
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
@@ -42,17 +46,37 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex space-x-8">
+            <Link
+              to="/"
+              className={` ${isScrolled ? 'text-blue-600' : 'text-white'} hover:scale-120 transform cursor-pointer   px-3 py-2 text-md font-medium transition-colors duration-200`}
+            >
+              Acceuil
+            </Link>
+            {
+              navLinks.map((item , index) => (
+                <Link to={item.link}
+                key={item}
+                // onClick={() =>
+                //   scrollToSection(item.toLowerCase().replace(" ", "-"))
+                // }
+                className={` ${isScrolled ? 'text-blue-600' : 'text-white'} hover:scale-120 transform cursor-pointer   px-3 py-2 text-md font-medium transition-colors duration-200`}
+              >
+                {item.text}
+              </Link>
+              ))
+            }
             {navigation.map((item, index) => (
               <button
                 key={item}
                 onClick={() =>
                   scrollToSection(item.toLowerCase().replace(" ", "-"))
                 }
-                className={` ${isScrolled ? 'text-blue-600' : 'text-white'}  px-3 py-2 text-md font-medium transition-colors duration-200`}
+                className={` ${isScrolled ? 'text-blue-600' : 'text-white'} hover:scale-120 transform cursor-pointer  px-3 py-2 text-md font-medium transition-colors duration-200`}
               >
                 {item}
               </button>
             ))}
+            
           </nav>
 
           {/* Language Switcher and Mobile Menu Button */}
