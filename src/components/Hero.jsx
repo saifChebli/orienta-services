@@ -1,5 +1,4 @@
 import React from 'react';
-
 const Hero = () => {
   const content = {
       slogan: "Votre Passerelle vers les Opportunités Mondiales",
@@ -18,6 +17,7 @@ const Hero = () => {
   return (
     <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
+
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat gradient"
         // style={{

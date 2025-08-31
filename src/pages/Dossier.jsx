@@ -43,7 +43,7 @@ export default function Dossier() {
             <section className="bg-white rounded-2xl shadow-xl/40 max-w-4xl mx-auto shadow-slate-200 p-6 sm:p-8 border border-slate-100">
               <form onSubmit={handleSubmit} className="mt-6 gap-4">
                 
-                <Field labelFR="Nom complet" labelAR="الاسم الكامل" required>
+                <Field labelFR="Numéro de dossier" labelAR="الاسم الكامل" required>
                   <input
                     type="text"
                     name="fullName"
@@ -55,17 +55,18 @@ export default function Dossier() {
                   />
                 </Field>
 
-                <Field labelFR="Téléphone" labelAR="الهاتف" required>
+                <Field labelFR="Nom & Prénom" labelAR="الهاتف" required>
                   <input
-                    type="tel"
+                    type="text"
                     name="phone"
-                    value={form.phone}
+                    value={form.fullName}
                     onChange={handleChange}
                     required
                     placeholder="Ex: +216 20 000 000"
                     className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
                   />
                 </Field>
+              
 
                 <Field labelFR="Adresse e-mail" labelAR="البريد الإلكتروني" required>
                   <input
@@ -79,26 +80,34 @@ export default function Dossier() {
                   />
                 </Field>
 
-                <Field labelFR="Niveau d'étude" labelAR="المستوى الدراسي" required>
-                  <select
+                  <Field labelFR="Numéro de téléphone" labelAR="الهاتف" required>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={form.phone}
+                    onChange={handleChange}
+                    required
+                    placeholder="Ex: +216 20 000 000"
+                    className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                  />
+                </Field>
+
+                <Field labelFR="Adresse exacte
+"  required>
+                  <input
+                    type="text"
                     name="studyLevel"
                     value={form.studyLevel}
                     onChange={handleChange}
                     required
+                    placeholder="Adresse exacte..."
                     className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  >
-                    <option value="">Choisir…</option>
-                    <option>Secondaire</option>
-                    <option>Licence</option>
-                    <option>Master</option>
-                    <option>Doctorat</option>
-                    <option>Autre</option>
-                  </select>
+                  />
                 </Field>
 
-                <Field labelFR="Domaine professionnel" labelAR="المجال المهني" required>
+                <Field labelFR="date de naissance" labelAR="المجال المهني" required>
                   <input
-                    type="text"
+                    type="date"
                     name="jobDomain"
                     value={form.jobDomain}
                     onChange={handleChange}
@@ -108,32 +117,28 @@ export default function Dossier() {
                   />
                 </Field>
 
-                <Field labelFR="Pays souhaité" labelAR="البلد المرغوب" required>
+                <Field labelFR="Quel type de travail recherchez-vous?" labelAR="البلد المرغوب" required>
                   <input
                     type="text"
                     name="destination"
                     value={form.destination}
                     onChange={handleChange}
                     required
-                    placeholder="Ex: Canada, Allemagne, France…"
+                    placeholder="Quel type de travail recherchez-vous?…"
                     className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
                   />
                 </Field>
 
-                <Field labelFR="Langue souhaitée" labelAR="اللغة المرغوبة" required>
-                  <select
-                    name="language"
-                    value={form.language}
-                    onChange={handleChange}
+                <Field labelFR="avez-vous un CV? "  required>
+                  <input
+                    type="text"
+                    name="destination"
+                    value={form.destination}
+                    onChange={handleChange} 
                     required
+                    placeholder="Oui ou Non…"
                     className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
-                  >
-                    <option value="">Choisir…</option>
-                    <option>Français</option>
-                    <option>Anglais</option>
-                    <option>Allemand</option>
-                    <option>Autre</option>
-                  </select>
+                  />
                 </Field>
 
                 <Field labelFR="Votre CV" labelAR="السيرة الذاتية" required>
@@ -233,7 +238,7 @@ function Field({ labelFR, labelAR, required, className, children }) {
   return (
     <label className={`block my-6 ${className || ""}`}>
       <span className="block text-lg font-medium text-slate-700">
-        {labelFR} - {labelAR}{" "}
+        {labelFR}{" "}
         {required && <span className="text-rose-600">*</span>}
       </span>
       <div className="mt-1">{children}</div>

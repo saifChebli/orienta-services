@@ -1,5 +1,6 @@
 import React from 'react';
 import aboutImage from '../assets/about-image.jpg';
+import visaOriveta from '../assets/visa-oriventa.png'
 
 const About = () => {
   const content = {
@@ -24,8 +25,13 @@ const About = () => {
   };
 
   return (
-    <section id="a-propos de nous" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="a-propos de nous" className="py-4 bg-gray-50">
+      <div className='-mt-24 max-w-7xl mx-auto flex justify-center items-center'>
+
+        <img src={visaOriveta} className="object-cover" width={420} alt="" />
+      </div>
+
+      <div className="-mt-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text Content */}
           <div className="space-y-8">
@@ -36,6 +42,7 @@ const About = () => {
               <p className="text-xl text-blue-600 font-semibold mb-6">
                 {content.subtitle}
               </p>
+
             </div>
             
             <p className="text-lg text-gray-700 leading-relaxed">
@@ -68,6 +75,7 @@ const About = () => {
 
           {/* Image */}
           <div className="relative">
+
             <div className="relative z-10">
               <img
                 src={aboutImage}
