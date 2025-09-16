@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const content = {
@@ -23,13 +24,24 @@ const Footer = () => {
       "Preparation aux entretiens d'embauche",
       "Conseils et orintations professionnels",
     ],
-    quickLinks: ["Acceuil", "Consultation Gratuite" , "Votre Dossier", "Création CV" ,"À Propos", "Nos Services", "Avis de nos clients"],
-  };
+quickLinks: [
+    { text: "Accueil", type: "scroll", to: "home" },
+    { text: "Consultation Gratuite", type: "link", to: "/consultation" },
+    { text: "Votre Dossier", type: "link", to: "/dossier" },
+    { text: "Création CV", type: "link", to: "/cv" },
+    { text: "A propos de nous", type: "scroll", to: "a-propos-de-nous" },
+    { text: "Notre service", type: "scroll", to: "notre-service" },
+    { text: "Contact", type: "scroll", to: "contact" },
+],  };
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+    const handleScrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -69,21 +81,36 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Liens Rapides</h4>
-            <ul className="space-y-3">
-              {content.quickLinks.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href="#"
-                    className="text-gray-300 hover:text-blue-400 transition-colors duration-200"
-                  >
-                    {link}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Quick Links */}
+<div>
+  <h4 className="text-lg font-semibold mb-6">Liens Rapides</h4>
+  <ul className="space-y-3">
+    {content.quickLinks.map((item, index) => (
+ <li key={index}>
+            {item.type === "link" ? (
+              <Link
+                to={item.to}
+                className="text-gray-300 hover:text-blue-400 transition-colors duration-200"
+              >
+                {item.text}
+              </Link>
+            ) : (
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleScrollTo(item.to);
+                }}
+                className="text-gray-300 hover:text-blue-400 transition-colors duration-200 cursor-pointer"
+              >
+                {item.text}
+              </a>
+            )}
+          </li>
+    ))}
+  </ul>
+</div>
+
         </div>
 
         {/* Bottom Section */}

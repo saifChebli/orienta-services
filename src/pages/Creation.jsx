@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo-light.png";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 export default function Creation() {
   const [form, setForm] = useState({
@@ -17,7 +19,11 @@ export default function Creation() {
     stages: "",
     associations: "",
     skills: "",
-    cvType: "",
+     cvTypes: {
+    europass: [],
+    canadien: [],
+    golfe: [],
+  },
     remarks: "",
     paymentReceipt: null,
   });
@@ -30,11 +36,41 @@ export default function Creation() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Form submitted", form);
-    alert("Merci ! Votre demande de CV a été envoyée avec succès.");
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const formData = new FormData();
+    for (const key in form) {
+      formData.append(key, form[key]);
+    }
+
+    const res = await axios.post("http://localhost:5000/api/creation/add-resume", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    console.log("Success:", res.data);
+    toast.success("Merci ! Votre demande de CV a été envoyée avec succès.");
+  } catch (err) {
+    console.error("Error submitting form:", err);
+    toast.error("Une erreur est survenue, veuillez réessayer.");
+  }
+};
+
+const handleCvTypeChange = (type, lang) => {
+  setForm((prev) => {
+    const current = prev.cvTypes[type];
+    const updated = current.includes(lang)
+      ? current.filter((l) => l !== lang) // remove if already selected
+      : [...current, lang]; // add if not selected
+    return {
+      ...prev,
+      cvTypes: { ...prev.cvTypes, [type]: updated },
+    };
+  });
+};
 
   return (
     <div className="min-h-screen font-kufam bg-gradient-to-b from-slate-50 to-white text-slate-800">
@@ -46,21 +82,12 @@ export default function Creation() {
       </h2>
 
       <p className="mt-6 max-w-3xl mx-auto text-gray-600 text-base md:text-lg leading-relaxed">
-        Lorem ipsum dolor sit amet, consectetur Nos modèles de CV professionnels
-        sont parfaits pour tout demandeur d’emploi. Ils sont faciles à lire, bien
-        organisés et contiennent juste assez de couleurs pour capter l’attention
-        des responsables du recrutement occupés. elit. Ut elit tellus, luctus nec
-        ullamcorper mattis, pulvinar dapibus leo.
+        Nos modèles de CV modernes allient  efficacité. Conçus pour mettre en valeur vos compétences et expériences, ils offrent une présentation claire et structurée qui facilite la lecture. Grâce à leur design équilibré et professionnel, ces CV s’adaptent à tous les profils et secteurs d’activité. Leur présentation soignée facilite la sélection par les responsables du recrutement et optimise vos chances de décrocher un entretien.
       </p>
 
       <div className="my-10 border-t border-gray-300 w-11/12 md:w-2/3 mx-auto"></div>
 
       <div className="flex flex-col items-center space-y-6">
-        <button className="flex items-center justify-center gap-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition">
-          CRÉER UN NOUVEAU CV A 24DT
-          {/* <FaIdCard className="text-lg" /> */}
-        </button>
-
         {/* Avatars */}
         <div className="flex -space-x-3">
           <img
@@ -300,30 +327,64 @@ export default function Creation() {
 
               {/* Type de CV */}
               <Field labelFR="Type de CV" required>
-                <div className="flex gap-6 mt-2">
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="cvType"
-                      value="Français"
-                      checked={form.cvType === "Français"}
-                      onChange={handleChange}
-                      required
-                    />
-                    Français
-                  </label>
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="cvType"
-                      value="Anglais"
-                      checked={form.cvType === "Anglais"}
-                      onChange={handleChange}
-                    />
-                    Anglais
-                  </label>
-                </div>
-              </Field>
+  <div className="space-y-4 mt-2">
+    {/* Europass */}
+    <div className="flex items-center gap-4">
+      <span className="font-semibold">Europass 🇪🇺 :</span>
+      <label className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={form.cvTypes.europass.includes("Fr")}
+          onChange={() => handleCvTypeChange("europass", "Fr")}
+        />
+        Fr
+      </label>
+      <label className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={form.cvTypes.europass.includes("Ang")}
+          onChange={() => handleCvTypeChange("europass", "Ang")}
+        />
+        Ang
+      </label>
+    </div>
+
+    {/* Canadien */}
+    <div className="flex items-center gap-4">
+      <span className="font-semibold">Canadien 🇨🇦 :</span>
+      <label className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={form.cvTypes.canadien.includes("Fr")}
+          onChange={() => handleCvTypeChange("canadien", "Fr")}
+        />
+        Fr
+      </label>
+      <label className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={form.cvTypes.canadien.includes("Ang")}
+          onChange={() => handleCvTypeChange("canadien", "Ang")}
+        />
+        Ang
+      </label>
+    </div>
+
+    {/* Pays de Golfe */}
+    <div className="flex items-center gap-4">
+      <span className="font-semibold">Pays de Golfe 🇸🇦 🇰🇼 :</span>
+      <label className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={form.cvTypes.golfe.includes("Ang")}
+          onChange={() => handleCvTypeChange("golfe", "Ang")}
+        />
+        Ang
+      </label>
+    </div>
+  </div>
+</Field>
+
 
               <Field labelFR="Autres remarques ou questions">
                 <input
@@ -341,9 +402,11 @@ export default function Creation() {
                 <input
                   type="file"
                   name="paymentReceipt"
+                  multiple
                   onChange={handleChange}
                   required
-                  className="w-full"
+                                    className="w-full max-w-xs rounded-xl border border-[#1D4ED8] px-3 py-2"
+
                 />
               </Field>
 
@@ -369,9 +432,11 @@ function TopBar() {
     <div className="bg-[#1D4ED8] h-[80px] text-white sticky top-0 z-40">
       <div className="container h-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-full">
-          <a href="#" className="flex items-center gap-2">
-            <img src={logo} alt="Logo" width={120} />
-          </a>
+            <Link to="/" className="flex items-center gap-2">
+                      <span>
+                        <img src={logo} alt="" width={120} />
+                      </span>
+                    </Link>
           <nav>
             <Link to="/">Accueil</Link>
           </nav>

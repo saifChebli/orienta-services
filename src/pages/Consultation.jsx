@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo-light.png";
+import toast from "react-hot-toast";
+import api from "../api";
 
 export default function Consultation() {
   const [form, setForm] = useState({
@@ -22,13 +24,30 @@ export default function Consultation() {
     setForm((f) => ({ ...f, [name]: type === "checkbox" ? checked : value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // TODO: wire up to your backend/Google Sheet/Email API
-    console.log("Lead submitted", form);
-    alert(
-      "Merci ! Nous vous contacterons en moins de 24h.\nشكراً! سنتواصل معك في أقل من 24 ساعة."
-    );
+    try {
+      const response = await api.post("/api/consultations/add-consultation", form);
+      if (response.status === 201) {
+        toast.success("Demande envoyée avec succès!");
+        setForm({
+          fullName: "",
+          phone: "",
+          whatsapp: "",
+          address: "",
+          jobDomain: "",
+          experience: "",
+          destination: "",
+          jobType: "",
+          reason: "",
+          extra: "",
+          consent: false,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Une erreur s'est produite.");
+    }
   };
 
   return (
@@ -226,11 +245,11 @@ function TopBar() {
     <div className="bg-[#1D4ED8] h-[80px] text-white  border-b border-slate-100 sticky top-0 z-40">
       <div className="container h-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4 h-full">
-          <a href="#" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <span>
               <img src={logo} alt="" width={120} />
             </span>
-          </a>
+          </Link>
 
           <nav className=" items-center gap-6 text-lg">
             <Link to="/">Accueil</Link>

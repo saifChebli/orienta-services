@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo-light.png";
+import axios from "axios";
+import toast from "react-hot-toast";
 
 export default function Dossier() {
   const [form, setForm] = useState({
@@ -37,10 +39,54 @@ export default function Dossier() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted", form);
-    alert("Merci ! Votre dossier a été envoyé avec succès.");
+
+    try {
+      const formData = new FormData();
+
+      Object.keys(form).forEach((key) => {
+        formData.append(key, form[key]);
+      });
+
+      const res = await axios.post(
+        "http://localhost:5000/api/dossiers/add-candidate",
+        formData,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        }
+      );
+
+      toast.success("Merci ! Votre dossier a été envoyé avec succès.");
+      setForm({
+        dossierNumber: "",
+        fullName: "",
+        email: "",
+        phone: "",
+        address: "",
+        birthDate: "",
+        jobType: "",
+        hasCV: "",
+        cvFile: null,
+        experiences: "",
+        exp1: "",
+        exp2: "",
+        exp3: "",
+        attestationsTravail: null,
+        languages: "",
+        diplomas: "",
+        diplomasFiles: null,
+        stages: "",
+        attestationsStage: null,
+        associations: "",
+        skills: "",
+        remarks: "",
+        paymentReceipt: null,
+      });
+    } catch (err) {
+      console.error(err);
+      toast.error("Erreur lors de l’envoi du dossier.");
+    }
   };
 
   return (
@@ -52,7 +98,6 @@ export default function Dossier() {
         <main className="container mx-auto px-4 sm:px-6 lg:px-8 pb-16">
           <section className="bg-white rounded-2xl shadow-xl/40 max-w-4xl mx-auto shadow-slate-200 p-6 sm:p-8 border border-slate-100">
             <form onSubmit={handleSubmit} className="mt-6 gap-4">
-
               {/* Numéro de dossier */}
               <Field labelFR="Numéro de dossier" required>
                 <input
@@ -160,9 +205,10 @@ export default function Dossier() {
               <Field labelFR="CV (PDF)">
                 <input
                   type="file"
+                  multiple
                   name="cvFile"
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full max-w-xs rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
               </Field>
 
@@ -215,12 +261,16 @@ export default function Dossier() {
                 />
               </Field>
 
-              <Field labelFR="Attachez des photos de vos attestations de travail" required>
+              <Field
+                labelFR="Attachez des photos de vos attestations de travail"
+                required
+              >
                 <input
                   type="file"
+                  multiple
                   name="attestationsTravail"
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full max-w-xs rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
               </Field>
 
@@ -238,7 +288,10 @@ export default function Dossier() {
               </Field>
 
               {/* Diplômes */}
-              <Field labelFR="Liste des diplômes avec établissements et périodes" required>
+              <Field
+                labelFR="Liste des diplômes avec établissements et périodes"
+                required
+              >
                 <input
                   type="text"
                   name="diplomas"
@@ -250,12 +303,16 @@ export default function Dossier() {
                 />
               </Field>
 
-              <Field labelFR="Attachez des photos de vos diplômes, certificats..." required>
+              <Field
+                labelFR="Attachez des photos de vos diplômes, certificats..."
+                required
+              >
                 <input
                   type="file"
+                  multiple
                   name="diplomasFiles"
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full max-w-xs rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
               </Field>
 
@@ -272,12 +329,16 @@ export default function Dossier() {
                 />
               </Field>
 
-              <Field labelFR="Attachez des photos de vos attestations de stage" required>
+              <Field
+                labelFR="Attachez des photos de vos attestations de stage"
+                required
+              >
                 <input
                   type="file"
+                  multiple
                   name="attestationsStage"
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full max-w-xs rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
               </Field>
 
@@ -323,9 +384,10 @@ export default function Dossier() {
               <Field labelFR="Télécharger votre reçu de paiement" required>
                 <input
                   type="file"
+                  multiple
                   name="paymentReceipt"
                   onChange={handleChange}
-                  className="w-full"
+                  className="w-full max-w-xs rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
               </Field>
 
@@ -351,9 +413,11 @@ function TopBar() {
     <div className="bg-[#1D4ED8] h-[80px] text-white sticky top-0 z-40">
       <div className="container h-full mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-full">
-          <a href="#" className="flex items-center gap-2">
-            <img src={logo} alt="Logo" width={120} />
-          </a>
+          <Link to="/" className="flex items-center gap-2">
+            <span>
+              <img src={logo} alt="" width={120} />
+            </span>
+          </Link>
           <nav>
             <Link to="/">Accueil</Link>
           </nav>
