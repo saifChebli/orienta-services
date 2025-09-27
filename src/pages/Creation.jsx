@@ -73,7 +73,7 @@ const handleCvTypeChange = (type, lang) => {
 };
 
   return (
-    <div className="min-h-screen font-kufam bg-gradient-to-b from-slate-50 to-white text-slate-800">
+    <div  translate='no' className="min-h-screen font-kufam bg-gradient-to-b from-slate-50 to-white text-slate-800">
       <TopBar />
             {/* Header Section */}
       <section className="py-16 px-6 md:px-20 text-center">

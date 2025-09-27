@@ -51,7 +51,7 @@ export default function Consultation() {
   };
 
   return (
-    <div className="min-h-screen font-kufam bg-gradient-to-b from-slate-50 to-white text-slate-800">
+    <div  translate='no' className="min-h-screen font-kufam bg-gradient-to-b from-slate-50 to-white text-slate-800">
       <TopBar />
       <div className="flex flex-col items-center space-y-4 justify-center">
         <HeaderHero />
