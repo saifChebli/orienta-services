@@ -21,6 +21,7 @@ export default function Creation() {
     skills: "",
      cvTypes: {
     europass: [],
+    allemand: [],
     canadien: [],
     golfe: [],
   },
@@ -344,6 +345,28 @@ const handleCvTypeChange = (type, lang) => {
           type="checkbox"
           checked={form.cvTypes.europass.includes("Ang")}
           onChange={() => handleCvTypeChange("europass", "Ang")}
+        />
+        Ang
+      </label>
+    </div>
+
+    {/* Allemand */}
+
+    <div className="flex items-center gap-4">
+      <span className="font-semibold">Allemand 🇩🇪 :</span>
+      <label className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={form.cvTypes.allemand.includes("Fr")}
+          onChange={() => handleCvTypeChange("allemand", "Fr")}
+        />
+        Fr
+      </label>
+      <label className="flex items-center gap-2">
+        <input
+          type="checkbox"
+          checked={form.cvTypes.allemand.includes("Ang")}
+          onChange={() => handleCvTypeChange("allemand", "Ang")}
         />
         Ang
       </label>

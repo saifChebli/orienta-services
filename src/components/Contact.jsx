@@ -5,6 +5,8 @@ import {
   MapPinIcon,
   PaperAirplaneIcon
 } from '@heroicons/react/24/outline';
+import toast from 'react-hot-toast';
+import api from '../api';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -42,11 +44,24 @@ const Contact = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    setFormData({ name: '', email: '', phone: '', message: '' });
+       try {
+      const response = await api.post("/api/contact", formData);
+      if (response.status === 201) {
+        toast.success("Demande envoyée avec succès!");
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Une erreur s'est produite.");
+    }
+
   };
 
   return (

@@ -77,15 +77,6 @@ const Header = () => {
           {/* Actions */}
           <div className="flex items-center space-x-4">
             {/* Language */}
-            <button
-              className={`hidden md:block px-4 py-1.5 rounded-full border transition ${
-                isScrolled
-                  ? "bg-blue-600 text-white border-blue-600 hover:bg-blue-700"
-                  : "bg-white text-blue-600 border-white hover:bg-gray-100"
-              }`}
-            >
-              FR
-            </button>
 
             {/* Mobile Menu Toggle */}
             <button
@@ -133,9 +124,6 @@ const Header = () => {
               </button>
             )
           )}
-          <button className="px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700">
-            FR
-          </button>
         </div>
       </div>
     </header>

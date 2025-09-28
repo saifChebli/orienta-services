@@ -82,6 +82,8 @@ export default function Dossier() {
         skills: "",
         remarks: "",
         paymentReceipt: null,
+        passportNum: "",
+        photo: null,
       });
     } catch (err) {
       console.error(err);
@@ -207,6 +209,18 @@ export default function Dossier() {
                   type="file"
                   multiple
                   name="cvFile"
+                  onChange={handleChange}
+                  className="w-full max-w-xs rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* attachez votre photo professionnel */}
+
+              <Field labelFR="Attachez votre photo professionnel">
+                <input
+                  type="file"
+                  multiple
+                  name="photoFile"
                   onChange={handleChange}
                   className="w-full max-w-xs rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
@@ -376,6 +390,20 @@ export default function Dossier() {
                   value={form.remarks}
                   onChange={handleChange}
                   placeholder="Vos remarques"
+                  className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
+                />
+              </Field>
+
+              {/* Num passeport */}
+
+              <Field labelFR="Numéro de passeport">
+                <input
+                  type="text"
+                  name="passport"
+                  value={form.passport}
+                  onChange={handleChange}
+                  required
+                  placeholder="Num passport"
                   className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
               </Field>
