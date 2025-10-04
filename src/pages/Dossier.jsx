@@ -50,7 +50,7 @@ export default function Dossier() {
       });
 
       const res = await axios.post(
-        "http://localhost:5000/api/dossiers/add-candidate",
+        "https://admin.oriventa-pro-service.com/api/dossiers/add-candidate",
         formData,
         {
           headers: { "Content-Type": "multipart/form-data" },

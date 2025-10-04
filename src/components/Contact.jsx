@@ -7,7 +7,7 @@ import {
 } from '@heroicons/react/24/outline';
 import toast from 'react-hot-toast';
 import api from '../api';
-
+import axios from 'axios'
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -47,7 +47,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
        try {
-      const response = await api.post("/api/contact", formData);
+      const response = await axios.post("https://admin.oriventa-pro-service.com/api/contact", formData);
       if (response.status === 201) {
         toast.success("Demande envoyée avec succès!");
         setFormData({

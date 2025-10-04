@@ -46,7 +46,7 @@ const handleSubmit = async (e) => {
       formData.append(key, form[key]);
     }
 
-    const res = await axios.post("http://localhost:5000/api/creation/add-resume", formData, {
+    const res = await axios.post("https://admin.oriventa-pro-service.com/api/creation/add-resume", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },

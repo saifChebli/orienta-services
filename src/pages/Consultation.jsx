@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo-light.png";
 import toast from "react-hot-toast";
 import api from "../api";
-
+import axios from 'axios'
 export default function Consultation() {
   const [form, setForm] = useState({
     fullName: "",
@@ -27,7 +27,7 @@ export default function Consultation() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post("/api/consultations/add-consultation", form);
+      const response = await axios.post("https://admin.oriventa-pro-service.com/api/consultations/add-consultation", form);
       if (response.status === 201) {
         toast.success("Demande envoyée avec succès!");
         setForm({
