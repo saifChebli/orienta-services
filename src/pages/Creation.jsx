@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo-light.png";
 import toast from "react-hot-toast";
 import axios from "axios";
+import api from "../api";
 
 export default function Creation() {
+    useEffect(()=>{
+    window.scrollTo(0,0);
+  },[])
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -22,6 +26,7 @@ export default function Creation() {
      cvTypes: {
     europass: [],
     allemand: [],
+    italian: [],
     canadien: [],
     golfe: [],
   },
@@ -46,13 +51,36 @@ const handleSubmit = async (e) => {
       formData.append(key, form[key]);
     }
 
-    const res = await axios.post("https://admin.oriventa-pro-service.com/api/creation/add-resume", formData, {
+    const res = await api.post("/api/creation/add-resume", formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
     });
 
-    console.log("Success:", res.data);
+    setForm({
+      fullName: "",
+      email: "",
+      phone: "",
+      address: "",
+      birthDate: "",
+      exp1: "",
+      exp2: "",
+      exp3: "",
+      languages: "",
+      diplomas: "",
+      stages: "",
+      associations: "",
+      skills: "",
+      cvTypes: {
+        europass: [],
+        allemand: [],
+        italian: [],
+        canadien: [],
+        golfe: [],
+      },
+      remarks: "",
+      paymentReceipt: null,
+    })
     toast.success("Merci ! Votre demande de CV a été envoyée avec succès.");
   } catch (err) {
     console.error("Error submitting form:", err);
@@ -199,14 +227,14 @@ const handleCvTypeChange = (type, lang) => {
                 />
               </Field>
 
-              <Field labelFR="Numéro de téléphone" required>
+              <Field labelFR="Numéro de Whatsapp" required>
                 <input
                   type="tel"
                   name="phone"
                   value={form.phone}
                   onChange={handleChange}
                   required
-                  placeholder="Numéro de téléphone"
+                  placeholder="Numéro de whatsapp"
                   className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
               </Field>
@@ -357,18 +385,24 @@ const handleCvTypeChange = (type, lang) => {
       <label className="flex items-center gap-2">
         <input
           type="checkbox"
-          checked={form.cvTypes.allemand.includes("Fr")}
-          onChange={() => handleCvTypeChange("allemand", "Fr")}
+          checked={form.cvTypes.allemand.includes("allemand")}
+          onChange={() => handleCvTypeChange("allemand", "Allemand")}
         />
-        Fr
+        Allemand
       </label>
+    </div>
+
+    {/* Italien */}
+
+    <div className="flex items-center gap-4">
+      <span className="font-semibold">Italien 🇮🇹 :</span>
       <label className="flex items-center gap-2">
         <input
           type="checkbox"
-          checked={form.cvTypes.allemand.includes("Ang")}
-          onChange={() => handleCvTypeChange("allemand", "Ang")}
+          checked={form.cvTypes.italian.includes("italian")}
+          onChange={() => handleCvTypeChange("italian", "italian")}
         />
-        Ang
+        Italien
       </label>
     </div>
 

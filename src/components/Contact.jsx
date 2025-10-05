@@ -30,7 +30,7 @@ const Contact = () => {
         title: "Contactez-nous",
         subtitle: "Nous sommes là pour vous aider à réussir mondialement",
         address: "B.7, Résidence Horizon, 2 Av. Hédi Nouira, Ennasr 2037",
-        phone: "+1 (555) 123-4567",
+        phone: "29065841",
         email: "info@orientaproservice.com"
       }
     
@@ -47,7 +47,7 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
        try {
-      const response = await axios.post("https://admin.oriventa-pro-service.com/api/contact", formData);
+      const response = await api.post("/api/contact", formData);
       if (response.status === 201) {
         toast.success("Demande envoyée avec succès!");
         setFormData({

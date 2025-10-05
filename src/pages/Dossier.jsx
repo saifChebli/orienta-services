@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo-light.png";
 import axios from "axios";
 import toast from "react-hot-toast";
+import api from "../api";
 
 export default function Dossier() {
+
+    useEffect(()=>{
+    window.scrollTo(0,0);
+  },[])
   const [form, setForm] = useState({
     dossierNumber: "",
     fullName: "",
@@ -29,6 +34,8 @@ export default function Dossier() {
     skills: "",
     remarks: "",
     paymentReceipt: null,
+    passportPhoto: null,
+    photoPersonne: null,
   });
 
   const handleChange = (e) => {
@@ -49,13 +56,9 @@ export default function Dossier() {
         formData.append(key, form[key]);
       });
 
-      const res = await axios.post(
-        "https://admin.oriventa-pro-service.com/api/dossiers/add-candidate",
-        formData,
-        {
-          headers: { "Content-Type": "multipart/form-data" },
-        }
-      );
+      const res = await api.post("/api/dossiers/add-candidate", formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+      });
 
       toast.success("Merci ! Votre dossier a été envoyé avec succès.");
       setForm({
@@ -82,8 +85,8 @@ export default function Dossier() {
         skills: "",
         remarks: "",
         paymentReceipt: null,
-        passportNum: "",
-        photo: null,
+        passportPhoto: null,
+        photoPersonne: null,
       });
     } catch (err) {
       console.error(err);
@@ -92,7 +95,10 @@ export default function Dossier() {
   };
 
   return (
-    <div  translate='no' className="min-h-screen font-kufam bg-gradient-to-b from-slate-50 to-white text-slate-800">
+    <div
+      translate="no"
+      className="min-h-screen font-kufam bg-gradient-to-b from-slate-50 to-white text-slate-800"
+    >
       <TopBar />
       <div className="flex flex-col items-center space-y-4 justify-center">
         <HeaderHero />
@@ -140,14 +146,14 @@ export default function Dossier() {
               </Field>
 
               {/* Téléphone */}
-              <Field labelFR="Numéro de téléphone" required>
+              <Field labelFR="Numéro de Whatsapp" required>
                 <input
                   type="tel"
                   name="phone"
                   value={form.phone}
                   onChange={handleChange}
                   required
-                  placeholder="Numéro de téléphone"
+                  placeholder="Numéro de whatsapp"
                   className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
               </Field>
@@ -220,7 +226,7 @@ export default function Dossier() {
                 <input
                   type="file"
                   multiple
-                  name="photoFile"
+                  name="photoPersonne"
                   onChange={handleChange}
                   className="w-full max-w-xs rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
@@ -396,14 +402,12 @@ export default function Dossier() {
 
               {/* Num passeport */}
 
-              <Field labelFR="Numéro de passeport">
+              <Field labelFR="Attachez des photos : Copie du passeport et de la carte d’identité ( optionnel )">
                 <input
-                  type="text"
-                  name="passport"
-                  value={form.passport}
+                  type="file"
+                  multiple
                   onChange={handleChange}
-                  required
-                  placeholder="Num passport"
+                  name="passportPhoto"
                   className="w-full rounded-xl border border-[#1D4ED8] px-3 py-2"
                 />
               </Field>

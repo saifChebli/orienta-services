@@ -7,7 +7,7 @@ const Footer = () => {
       description:
         "Expert en recherche d'emploi à l'étranger, spécialisé dans l'accompagnement personnalisé, le coaching professionnel et la mise en relation directe avec des employeurs internationaux fiables.",
       address: "B.7, Résidence Horizon, 2 Av. Hédi Nouira, Ennasr 2037",
-      phone: "+1 (555) 123-4567",
+      phone: "29065841",
       email: "info@orientaproservice.com",
     },
     links: {
