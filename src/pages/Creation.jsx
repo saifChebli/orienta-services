@@ -47,14 +47,17 @@ const handleSubmit = async (e) => {
 
   try {
     const formData = new FormData();
+
     for (const key in form) {
-      formData.append(key, form[key]);
+      if (key === "cvTypes") {
+        formData.append("cvTypes", JSON.stringify(form.cvTypes));
+      } else {
+        formData.append(key, form[key]);
+      }
     }
 
     const res = await api.post("/api/creation/add-resume", formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      headers: { "Content-Type": "multipart/form-data" },
     });
 
     setForm({
@@ -80,13 +83,15 @@ const handleSubmit = async (e) => {
       },
       remarks: "",
       paymentReceipt: null,
-    })
+    });
+
     toast.success("Merci ! Votre demande de CV a été envoyée avec succès.");
   } catch (err) {
     console.error("Error submitting form:", err);
     toast.error("Une erreur est survenue, veuillez réessayer.");
   }
 };
+
 
 const handleCvTypeChange = (type, lang) => {
   setForm((prev) => {
@@ -385,8 +390,8 @@ const handleCvTypeChange = (type, lang) => {
       <label className="flex items-center gap-2">
         <input
           type="checkbox"
-          checked={form.cvTypes.allemand.includes("allemand")}
-          onChange={() => handleCvTypeChange("allemand", "Allemand")}
+         checked={form.cvTypes.allemand.includes("Allemand")}
+        onChange={() => handleCvTypeChange("allemand", "Allemand")}
         />
         Allemand
       </label>
